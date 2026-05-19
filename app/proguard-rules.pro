@@ -1,0 +1,7 @@
+-keepattributes *Annotation*
+-keep class com.jnetaol.permguard.data.model.** { *; }
+-keepclassmembers class com.jnetaol.permguard.data.model.** { *; }
+-keep class kotlinx.coroutines.** { *; }
+-dontwarn javax.annotation.**
+-keep class * extends androidx.room.RoomDatabase
+-keep @androidx.room.Entity class *

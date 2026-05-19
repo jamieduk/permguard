@@ -1,0 +1,64 @@
+# PermGuard - Change Log
+# Created: 2025-01-19
+
+## v1.0.0 - Initial Build
+
+### Files Created:
+- settings.gradle.kts - Root project settings
+- build.gradle.kts - Root build with AGP 8.2.2, Kotlin 1.9.22, KSP
+- gradle.properties - JVM/AndroidX settings
+- gradlew / gradlew.bat - Gradle wrapper scripts
+- gradle/wrapper/gradle-wrapper.properties - Gradle 8.5
+- .gitignore - Android/Gradle ignores
+- .github/workflows/build-debug.yml - Debug APK CI
+- .github/workflows/build-release.yml - Release APK CI (tag v* / manual)
+- README.md - Project readme
+- LICENSE - MIT License
+- CHANGELOG.md - Version history
+
+### App Module:
+- app/build.gradle.kts - App module with Compose, Room, KSP, ARM64 only
+- app/proguard-rules.pro - ProGuard rules
+- app/src/main/AndroidManifest.xml - Manifest with monitoring permissions
+
+### Kotlin Source (com.jnetaol.permguard):
+#### Data Layer:
+- data/model/Models.kt - AppProfile, PermissionLog entities, PermissionCategory, AccessType, PrivacyReport
+- data/db/DAOs.kt - AppProfileDao, PermissionLogDao, AggregateDao with Flow queries
+- data/db/AppDatabase.kt - Room database with singleton pattern
+
+#### Engine:
+- engine/PermissionMonitor.kt - Foreground service for background monitoring, BootReceiver
+- engine/PermissionScanner.kt - App scanner, sensitive permission detection, privacy score calc
+
+#### Logger:
+- logger/DebugLogger.kt - Persistent file-based debug logger with PG-xxx codes
+
+#### UI Theme:
+- ui/theme/Color.kt - Dark red/crimson neon color palette, score colors
+- ui/theme/Theme.kt - Material 3 dark theme
+
+#### UI Components:
+- ui/components/Components.kt - GlowButton, NeonCard, SectionHeader, EmptyState, StatusBadge, PrivacyScoreBadge, PermissionTimeline, AppPermissionCard, StatsCard, PermissionFilterBar
+
+#### UI Screens:
+- ui/screens/AppViewModel.kt - Shared ViewModel with all state management
+- ui/screens/home/HomeScreen.kt - Dashboard with stats, high-risk apps, recent activity
+- ui/screens/timeline/TimelineScreen.kt - Permission access timeline with filters
+- ui/screens/apps/AppsScreen.kt - All apps list with search and sort
+- ui/screens/detail/AppDetailScreen.kt - App details, permissions, access history
+- ui/screens/report/ReportScreen.kt - Privacy audit report with export
+- ui/screens/settings/SettingsScreen.kt - Settings with about, version, debug log
+
+#### App Entry:
+- PermGuardApp.kt - Application class, database init, logger init
+- MainActivity.kt - Compose navigation, Usage Stats permission, service start
+
+### Resources:
+- res/drawable/ic_shield.xml - Shield icon for notification
+- res/drawable/ic_launcher_background.xml - Black background
+- res/drawable/ic_launcher_foreground.xml - Red shield with check
+- res/mipmap-anydpi-v26/ic_launcher.xml - Adaptive icon
+- res/mipmap-anydpi-v26/ic_launcher_round.xml - Round adaptive icon
+- res/values/themes.xml - Base Android theme (no action bar)
+- res/values/colors.xml - Color resources
